@@ -70,3 +70,7 @@ let g:indentLine_leadingSpaceEnabled='1'
 " Highlight trailing whitespace
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
+
+" Mappings
+:nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
