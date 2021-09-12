@@ -29,22 +29,28 @@ set splitbelow
 call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'fannheyward/coc-marketplace'
-    Plug 'ryanoasis/vim-devicons'
     Plug 'flazz/vim-colorschemes'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
-    Plug 'scrooloose/nerdtree'
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
     Plug 'preservim/nerdcommenter'
     Plug 'mhinz/vim-startify'
     Plug 'udalov/kotlin-vim'
     Plug 'tpope/vim-fugitive'
     Plug 'Yggdroot/indentLine'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'wincent/command-t'
 call plug#end()
 
 colorscheme Monokai
 
 syntax enable
+
+" Font settings
+set guifont=Hack\ Nerd\ Font\ Mono\ 13
 
 " NerdCommenter settings
 let g:NERDSpaceDelims = 1
@@ -71,6 +77,30 @@ let g:indentLine_leadingSpaceEnabled='1'
 highlight RedundantSpaces ctermbg=red guibg=red
 match RedundantSpaces /\s\+$/
 
+" Nerd Tree Git
+let g:NERDTreeGitStatusUseNerdFonts = 1
+let g:NERDTreeGitStatusShowIgnored = 1
+let g:NERDTreeGitStatusIndicatorMapCustom = {
+                \ 'Modified'  :'✹',
+                \ 'Staged'    :'✚',
+                \ 'Untracked' :'✭',
+                \ 'Renamed'   :'➜',
+                \ 'Unmerged'  :'═',
+                \ 'Deleted'   :'✖',
+                \ 'Dirty'     :'✗',
+                \ 'Ignored'   :'☒',
+                \ 'Clean'     :'✔︎',
+                \ 'Unknown'   :'?',
+                \ }
+
 " Mappings
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
