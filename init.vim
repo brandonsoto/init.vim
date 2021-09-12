@@ -1,14 +1,12 @@
 set nocompatible            " disable compatibility to old-time vi
-" set list
-" set listchars=tab:>\ ,trail:-,nbsp:+,eol:$
 set laststatus=2
 set encoding=UTF-8
-set showmatch               " show matching 
-set ignorecase              " case insensitive 
-set mouse=v                 " middle-click paste with 
-set hlsearch                " highlight search 
+set showmatch               " show matching
+set ignorecase              " case insensitive
+set mouse=v                 " middle-click paste with
+set hlsearch                " highlight search
 set incsearch               " incremental search
-set tabstop=4               " number of columns occupied by a tab 
+set tabstop=4               " number of columns occupied by a tab
 set softtabstop=4           " see multiple spaces as tabstops so <BS> does the right thing
 set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
@@ -23,9 +21,6 @@ set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set ttyfast                 " Speed up scrolling in Vim
 set cursorline              " highlight current cursorline
-" set spell                 " enable spell check (may need to download language package)
-" set noswapfile            " disable creating swap file
-" set backupdir=~/.cache/vim " Directory to store backup files.
 
 " open new split panes to right and below
 set splitright
@@ -43,12 +38,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-startify'
     Plug 'udalov/kotlin-vim'
     Plug 'tpope/vim-fugitive'
+    Plug 'Yggdroot/indentLine'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
-" if (has("termguicolors"))
-"     set termguicolors
-" endif
 
 colorscheme Monokai
 
@@ -71,4 +63,10 @@ let g:lightline = {
       \ },
       \ }
 
+" indent line settings
+let g:indentLine_leadingSpaceChar='·'
+let g:indentLine_leadingSpaceEnabled='1'
 
+" Highlight trailing whitespace
+highlight RedundantSpaces ctermbg=red guibg=red
+match RedundantSpaces /\s\+$/
