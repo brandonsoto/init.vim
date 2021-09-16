@@ -27,7 +27,10 @@ set splitright
 set splitbelow
 
 call plug#begin('~/.vim/plugged')
-    Plug 'itchyny/lightline.vim'
+    Plug 'mhinz/vim-grepper'
+    Plug 'valloric/youcompleteme'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-surround'
     Plug 'fannheyward/coc-marketplace'
     Plug 'flazz/vim-colorschemes'
     Plug 'SirVer/ultisnips'
@@ -43,6 +46,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'Yggdroot/indentLine'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'wincent/command-t'
+    Plug 'vim-airline/vim-airline'
+    Plug 'majutsushi/tagbar'
+    " Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 colorscheme Monokai
@@ -72,6 +78,7 @@ let g:lightline = {
 " indent line settings
 let g:indentLine_leadingSpaceChar='·'
 let g:indentLine_leadingSpaceEnabled='1'
+" let g:indent_guides_enable_on_vim_startup = 1
 
 " Highlight trailing whitespace
 highlight RedundantSpaces ctermbg=red guibg=red
