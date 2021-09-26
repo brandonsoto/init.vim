@@ -22,6 +22,7 @@ set clipboard=unnamedplus   " using system clipboard
 filetype plugin on
 set ttyfast                 " Speed up scrolling in Vim
 set cursorline              " highlight current cursorline
+set history=200
 
 " open new split panes to right and below
 set splitright
