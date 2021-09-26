@@ -12,7 +12,8 @@ set expandtab               " converts tabs to white space
 set shiftwidth=4            " width for autoindents
 set autoindent              " indent a new line the same amount as the line just typed
 set number                  " add line numbers
-set wildmode=longest,list   " get bash-like tab completions
+" set wildmode=longest,list   " get bash-like tab completions
+set wildmode=full           " get zsh-like tab completions
 set cc=100                  " set an 80 column border for good coding style
 filetype plugin indent on   "allow auto-indenting depending on file type
 syntax on                   " syntax highlighting
@@ -45,9 +46,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'Yggdroot/indentLine'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'wincent/command-t'
     Plug 'vim-airline/vim-airline'
     Plug 'majutsushi/tagbar'
+    Plug 'ctrlpvim/ctrlp.vim'
     " Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
@@ -56,7 +57,7 @@ colorscheme Monokai
 syntax enable
 
 " Font settings
-set guifont=Hack\ Nerd\ Font\ Mono\ 13
+set guifont=Hack\ Nerd\ Font\ Mono\ 11
 
 " NerdCommenter settings
 let g:NERDSpaceDelims = 1
@@ -100,13 +101,29 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Unknown'   :'?',
                 \ }
 
+" ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+nnoremap <C-k> :CtrlPTag<CR>
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_extensions = ['tag', 'buffertag', 'quickfix', 'dir', 'rtscript',
+                          \ 'undo', 'line', 'changes', 'mixed', 'bookmarkdir']
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*/build/*    " MacOSX/Linux
+set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe,*/build/*  " Windows
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 " Mappings
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
