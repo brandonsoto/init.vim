@@ -121,13 +121,30 @@ let g:ctrlp_custom_ignore = {
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
-" Mappings
+" remove unwanted whitespace
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
+"######## nerd tree mappings ########
 nnoremap <leader>t :NERDTreeToggle<CR>
 " nnoremap <C-n> :NERDTree<CR>
 " nnoremap <C-t> :NERDTreeToggle<CR>
 " nnoremap <C-f> :NERDTreeFind<CR>
+
+"######## automatic mark jumps ########
+" position last insert
+nnoremap <leader>li `^
+" position before last jump within current file
+nnoremap <leader>lj ``
+" position of last change
+nnoremap <leader>lc `.
+" start of last yank
+nnoremap <leader>ys `[
+" end of last yank
+nnoremap <leader>ye `]
+" start of last visual selection
+nnoremap <leader>vs `<
+" end of last visual selection
+nnoremap <leader>ve `>
 
 " pressing %% expands to current directory
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
@@ -137,7 +154,7 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " nnoremap <C-w>v :vsplit<CR>
 
 
-" buffer list mappings
+"######## buffer list remappings ########
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
