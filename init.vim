@@ -24,6 +24,9 @@ set ttyfast                 " Speed up scrolling in Vim
 set cursorline              " highlight current cursorline
 set history=200
 
+let mapleader=","
+noremap \ ,
+
 " open new split panes to right and below
 set splitright
 set splitbelow
@@ -121,10 +124,25 @@ let g:ctrlp_custom_ignore = {
 " Mappings
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-" nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <leader>t :NERDTreeToggle<CR>
+" nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
 " nnoremap <C-f> :NERDTreeFind<CR>
+
+" pressing %% expands to current directory
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
+
+" split window mapping
+" nnoremap <C-w>s :split<CR>
+" nnoremap <C-w>v :vsplit<CR>
+
+
+" buffer list mappings
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
