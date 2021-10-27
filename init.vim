@@ -3,6 +3,7 @@ set laststatus=2
 set encoding=UTF-8
 set showmatch               " show matching
 set ignorecase              " case insensitive
+set smartcase               " smartcase search
 set mouse=v                 " middle-click paste with
 set hlsearch                " highlight search
 set incsearch               " incremental search
@@ -33,10 +34,10 @@ set splitbelow
 
 call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-grepper'
-    Plug 'valloric/youcompleteme'
+    "" Plug 'valloric/youcompleteme'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-surround'
-    Plug 'fannheyward/coc-marketplace'
+""    Plug 'fannheyward/coc-marketplace'
     Plug 'flazz/vim-colorschemes'
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
@@ -49,7 +50,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'udalov/kotlin-vim'
     Plug 'tpope/vim-fugitive'
     Plug 'Yggdroot/indentLine'
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    "" Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'vim-airline/vim-airline'
     Plug 'majutsushi/tagbar'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -120,6 +121,13 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+"######## vim grepper mappings ########
+" use ack
+nnoremap <leader>g :GrepperAck 
+" search for word under cursor
+nnoremap <leader>* :GrepperAck -w <c-r>=expand("<cword>")<cr><CR>
+
 
 " remove unwanted whitespace
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
