@@ -34,7 +34,7 @@ set splitbelow
 
 call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-grepper'
-    "" Plug 'valloric/youcompleteme'
+ ""   Plug 'valloric/youcompleteme'
     Plug 'airblade/vim-gitgutter'
     Plug 'tpope/vim-surround'
 ""    Plug 'fannheyward/coc-marketplace'
@@ -50,7 +50,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'udalov/kotlin-vim'
     Plug 'tpope/vim-fugitive'
     Plug 'Yggdroot/indentLine'
-    "" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+""    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'vim-airline/vim-airline'
     Plug 'majutsushi/tagbar'
     Plug 'ctrlpvim/ctrlp.vim'
@@ -62,7 +62,7 @@ colorscheme Monokai
 syntax enable
 
 " Font settings
-set guifont=Hack\ Nerd\ Font\ Mono\ 11
+""set guifont=Hack\ Nerd\ Font\ Mono\ 11
 
 " NerdCommenter settings
 let g:NERDSpaceDelims = 1
