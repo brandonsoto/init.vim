@@ -1,6 +1,7 @@
 set nocompatible            " disable compatibility to old-time vi
 set laststatus=2
 set encoding=UTF-8
+set scrolloff=5             " scroll offset
 set showmatch               " show matching
 set ignorecase              " case insensitive
 set smartcase               " smartcase search
@@ -109,6 +110,10 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
                 \ 'Unknown'   :'?',
                 \ }
 
+" window resizing
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -134,6 +139,9 @@ nnoremap <leader>* :GrepperAck -w <c-r>=expand("<cword>")<cr><CR>
 
 " remove unwanted whitespace
 :nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
+
+" ctags
+nnoremap <F6> :! ctags --tag-relative --extras=f -R <C-R>=getcwd()<CR><CR>
 
 "######## nerd tree mappings ########
 nnoremap <leader>t :NERDTreeToggle<CR>
