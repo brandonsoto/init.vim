@@ -36,6 +36,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'mhinz/vim-grepper'
  ""   Plug 'valloric/youcompleteme'
     Plug 'airblade/vim-gitgutter'
+    Plug 'tpope/vim-dispatch'
+    Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-surround'
 ""    Plug 'fannheyward/coc-marketplace'
     Plug 'flazz/vim-colorschemes'
