@@ -39,6 +39,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-dispatch'
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-unimpaired'
 ""    Plug 'fannheyward/coc-marketplace'
     Plug 'flazz/vim-colorschemes'
     Plug 'SirVer/ultisnips'
@@ -158,17 +159,6 @@ nnoremap <leader>ve `>
 
 " pressing %% expands to current directory
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
-
-" split window mapping
-" nnoremap <C-w>s :split<CR>
-" nnoremap <C-w>v :vsplit<CR>
-
-
-"######## buffer list remappings ########
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
 
 
 if exists("g:loaded_webdevicons")
