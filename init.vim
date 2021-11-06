@@ -34,56 +34,35 @@ set splitright
 set splitbelow
 
 call plug#begin('~/.vim/plugged')
-    Plug 'mhinz/vim-grepper'
- ""   Plug 'valloric/youcompleteme'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'lewis6991/impatient.nvim'
+    Plug 'mhinz/vim-grepper'
+    Plug 'mhinz/vim-startify'
+    Plug 'preservim/nerdcommenter'
+    Plug 'preservim/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleFind'] }
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleFind'] }
     Plug 'tpope/vim-dispatch'
+    Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
-""    Plug 'fannheyward/coc-marketplace'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
-    Plug 'preservim/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    Plug 'preservim/nerdcommenter'
-    Plug 'mhinz/vim-startify'
     Plug 'udalov/kotlin-vim'
-    Plug 'tpope/vim-fugitive'
-    Plug 'Yggdroot/indentLine'
-""    Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'vim-airline/vim-airline'
-    Plug 'majutsushi/tagbar'
-    Plug 'ctrlpvim/ctrlp.vim'
-    " Plug 'nathanaelkane/vim-indent-guides'
 call plug#end()
 
 colorscheme Monokai
 
 syntax enable
 
-" Font settings
-""set guifont=Hack\ Nerd\ Font\ Mono\ 11
-
 " NerdCommenter settings
 let g:NERDSpaceDelims = 1
 let g:NERDTrimTrailingWhitespace = 1
 let g:NERDToggleCheckAllLines = 1
-
-" Lightline settings
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'FugitiveHead'
-      \ },
-      \ }
 
 " indent line settings
 let g:indentLine_leadingSpaceChar='·'
@@ -113,6 +92,8 @@ let g:NERDTreeGitStatusIndicatorMapCustom = {
 " window resizing
 nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
 nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
+nnoremap <silent> <Leader>v+ :exe "vertical resize " . (winwidth(0) * 3/2)<CR>
+nnoremap <silent> <Leader>v- :exe "vertical resize " . (winwidth(0) * 2/3)<CR>
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
@@ -145,9 +126,6 @@ nnoremap <F6> :! ctags --tag-relative --extras=f -R <C-R>=getcwd()<CR><CR>
 
 "######## nerd tree mappings ########
 nnoremap <leader>t :NERDTreeToggle<CR>
-" nnoremap <C-n> :NERDTree<CR>
-" nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
 
 "######## automatic mark jumps ########
 " position last insert
@@ -168,7 +146,7 @@ nnoremap <leader>ve `>
 " pressing %% expands to current directory
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
-
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
