@@ -42,6 +42,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'lewis6991/impatient.nvim'
     Plug 'mhinz/vim-grepper'
     Plug 'mhinz/vim-startify'
+    Plug 'neovim/nvim-lspconfig'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'nvim-telescope/telescope.nvim'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
     Plug 'preservim/nerdcommenter'
     Plug 'preservim/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle', 'NERDTreeToggleFind'] }
     Plug 'ryanoasis/vim-devicons'
@@ -127,6 +132,12 @@ nnoremap <F6> :! ctags --tag-relative --extras=f -R <C-R>=getcwd()<CR><CR>
 "######## nerd tree mappings ########
 nnoremap <leader>t :NERDTreeToggle<CR>
 
+" Telescope mapping
+nnoremap <leader>ff <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>fg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>fb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>fh <cmd>lua require('telescope.builtin').help_tags()<cr>
+
 "######## automatic mark jumps ########
 " position last insert
 nnoremap <leader>li `^
@@ -149,4 +160,40 @@ cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
 endif
+
+lua <<EOF
+    require('nvim-treesitter.configs').setup {
+        ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+        ignore_install = { "javascript" }, -- List of parsers to ignore installing
+        highlight = {
+            enable = true,              -- false will disable the whole extension
+            disable = { "c", "rust" },  -- list of language that will be disabled
+            -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+            -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+            -- Using this option may slow down your editor, and you may see some duplicate highlights.
+            -- Instead of true it can also be a list of languages
+            additional_vim_regex_highlighting = false
+        }
+    }
+EOF
+
+
+lua <<EOF
+-- You dont need to set any of these options. These are the default ones. Only
+-- the loading is important
+require('telescope').setup {
+    extensions = {
+        fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+            case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+            -- the default case_mode is "smart_case"
+            }
+        }
+    }
+-- To get fzf loaded and working with telescope, you need to call
+-- load_extension, somewhere after setup function:
+require('telescope').load_extension('fzf')
+EOF
 
